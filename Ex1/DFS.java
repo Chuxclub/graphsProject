@@ -1,5 +1,3 @@
-package Ex1;
-
 public class DFS
 {
     private GraphSimple graph;
@@ -53,5 +51,29 @@ public class DFS
     public void setParent(int vertex, int parent)
     {
         this.parent[vertex] = parent;
+    }
+    
+    
+    //~~~~~~ Debug:
+    public void printState()
+    {
+        int order = this.graph.order();
+        
+        System.out.print("Colors: ");
+        for(int i = 0; i < order; i++)
+            System.out.print(this.color[i] + " ");
+        System.out.println("\n");
+        
+        
+        System.out.print("Distances: ");
+        for(int i = 0; i < order; i++)
+            System.out.print(this.distance[i] + " ");
+        System.out.println("\n");
+        
+        
+        System.out.print("Parents: ");
+        for(int i = 0; i < order; i++)
+            System.out.print(this.parent[i] + " ");
+        System.out.println("\n");
     }
 }
