@@ -50,7 +50,7 @@ public class DFS
         this.distance[vertex] = distance;
     }
     
-    public setParent(int vertex, int parent)
+    public void setParent(int vertex, int parent)
     {
         this.parent[vertex] = parent;
     }
