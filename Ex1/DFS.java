@@ -19,9 +19,39 @@ public class DFS
         initColors();
     }
     
+    public Color getColor(int vertex)
+    {
+        return this.color[vertex];
+    }
+    
+    public int getDistance(int vertex)
+    {
+        return this.distance[vertex];
+    }
+    
+    public int getParent(int vertex)
+    {
+        return this.parent[vertex];
+    }
+    
     public void initColors()
     {
         for(int i = 0; i < this.graph.order(); i++)
             this.color[i] = Color.Green;
+    }
+    
+    public void setColor(int vertex, Color color)
+    {
+        this.color[vertex] = color;
+    }
+    
+    public void setDistance(int vertex, int distance)
+    {
+        this.distance[vertex] = distance;
+    }
+    
+    public setParent(int vertex, int parent)
+    {
+        this.parent[vertex] = parent;
     }
 }
