@@ -1,4 +1,4 @@
-public class Test
+public class Main
 {
     public static void main(String[] args)
     {
@@ -27,6 +27,6 @@ public class Test
 	// ~~~~~~~~~~~~~~~~~ DFS on Graph ~~~~~~~~~~~~~~~~~ //
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
         DFS dfsTest = new DFS(gTest);
-        dfsTest.printState();
+        dfsTest.execDFS();
     }
 }

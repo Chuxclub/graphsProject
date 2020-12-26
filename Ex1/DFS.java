@@ -17,6 +17,12 @@ public class DFS
         initColors();
     }
     
+    public void execDFS()
+    {
+        //Implanter ici l'algo de parcours en largeur
+        this.printState();
+    }
+    
     public Color getColor(int vertex)
     {
         return this.color[vertex];
