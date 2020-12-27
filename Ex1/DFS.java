@@ -3,6 +3,10 @@ import java.util.*;
 public class DFS
 {
     private GraphSimple graph;
+    
+    //Ex2:
+    private boolean isConnected;
+    
     private Color[] color;
     private int[] distance;
     private int[] parent;
@@ -22,15 +26,21 @@ public class DFS
     public void execDFS()
     {
         int order = this.graph.order();
+        boolean isConnected = true;
         
         for(int i = 0; i < order; i++)
         {
             if(this.getColor(i) == Color.Green)
             {
+                //Ex2:
+                if(i > 0)
+                    isConnected = false;
+
                 vertexDFS(i);
             }
         }
-    
+        
+        this.isConnected = isConnected;
         this.printState();
     }
     
@@ -114,21 +124,25 @@ public class DFS
     {
         int order = this.graph.order();
         
-        System.out.print("Colors    : ");
+        System.out.print("Colors         : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.color[i] + " ");
         System.out.println("\n");
         
         
-        System.out.print("Distances : ");
+        System.out.print("Distances      : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.distance[i] + " ");
         System.out.println("\n");
         
         
-        System.out.print("Parents   : ");
+        System.out.print("Parents        : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.parent[i] + " ");
         System.out.println("\n");
+        
+        //Ex2:
+        System.out.print("Connectivity   : ");
+        System.out.println(this.isConnected + " \n");
     }
 }
