@@ -11,6 +11,9 @@ public class DFS
     private int[] distance;
     private int[] parent;
     
+    //Ex3:
+    private int[] component;
+    
     public DFS(GraphSimple graph)
     {
         this.graph = graph;
@@ -19,6 +22,9 @@ public class DFS
         color = new Color[order];
         distance = new int[order];
         parent = new int[order];
+        
+        //Ex3:
+        component = new int[order];
         
         initColors();
     }
@@ -49,6 +55,12 @@ public class DFS
         return this.color[vertex];
     }
     
+    //Ex3:
+    public int getComponent(int vertex)
+    {
+        return this.component[vertex];
+    }
+    
     public int getDistance(int vertex)
     {
         return this.distance[vertex];
@@ -68,6 +80,12 @@ public class DFS
     public void setColor(int vertex, Color color)
     {
         this.color[vertex] = color;
+    }
+    
+    //Ex3:
+    public void setComponent(int vertex, int component)
+    {
+        this.component[vertex] = component;
     }
     
     public void setDistance(int vertex, int distance)
@@ -93,6 +111,9 @@ public class DFS
         this.setColor(v, Color.Orange);
         this.setParent(v, 0);
         
+        //Ex3:
+        this.setComponent(v, v + 1);
+        
         
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
         //~~~~~~~~~~ Itération ~~~~~~~~~//
@@ -110,6 +131,10 @@ public class DFS
                     this.setColor(vertexAdjList[i], Color.Orange);
                     this.setDistance(vertexAdjList[i], this.getDistance(vertex) + 1);
                     this.setParent(vertexAdjList[i], vertex + 1);
+                    
+                    //Ex3:
+                    this.setComponent(vertexAdjList[i], v + 1);
+                    
                     waitingQueue.add(vertexAdjList[i]);
                 }
             }
@@ -141,8 +166,16 @@ public class DFS
             System.out.print(this.parent[i] + " ");
         System.out.println("\n");
         
+        
         //Ex2:
         System.out.print("Connectivity   : ");
         System.out.println(this.isConnected + " \n");
+        
+        
+        //Ex3:
+        System.out.print("Components     : ");
+        for(int i = 0; i < order; i++)
+            System.out.print(this.component[i] + " ");
+        System.out.println("\n");
     }
 }
