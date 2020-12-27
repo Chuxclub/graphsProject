@@ -149,18 +149,21 @@ public class DFS
     {
         int order = this.graph.order();
         
+        printVertices();
         System.out.print("Colors         : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.color[i] + " ");
         System.out.println("\n");
         
         
+        printVertices();
         System.out.print("Distances      : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.distance[i] + " ");
         System.out.println("\n");
         
         
+        printVertices();
         System.out.print("Parents        : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.parent[i] + " ");
@@ -173,9 +176,20 @@ public class DFS
         
         
         //Ex3:
+        printVertices();
         System.out.print("Components     : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.component[i] + " ");
         System.out.println("\n");
+    }
+    
+    public void printVertices()
+    {
+        int order = this.graph.order();
+        
+        System.out.print("Vertices       : ");
+        for(int i = 0; i < order; i++)
+            System.out.print(i+1 + " ");
+        System.out.println();
     }
 }
