@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class DFS
 {
     private GraphSimple graph;
@@ -19,7 +21,16 @@ public class DFS
     
     public void execDFS()
     {
-        //Implanter ici l'algo de parcours en largeur
+        int order = this.graph.order();
+        
+        for(int i = 0; i < order; i++)
+        {
+            if(this.getColor(i) == Color.Green)
+            {
+                vertexDFS(i);
+            }
+        }
+    
         this.printState();
     }
     
@@ -60,24 +71,62 @@ public class DFS
     }
     
     
+    public void vertexDFS(int v)
+    {
+        //On crée une file d'attente locale à l'algorithme:
+        int order = this.graph.order();
+        LinkedList<Integer> waitingQueue = new LinkedList<>();
+        
+        //On ajoute la racine dans la file et on initialise ses valeurs:
+        waitingQueue.add(v);
+        this.setDistance(v, 0);
+        this.setColor(v, Color.Orange);
+        this.setParent(v, 0);
+        
+        
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        //~~~~~~~~~~ Itération ~~~~~~~~~//
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        
+        while(!(waitingQueue.isEmpty()))
+        {
+            int vertex = waitingQueue.remove();
+            int[] vertexAdjList = this.graph.getAdjacencyList(vertex);
+        
+            for(int i = 0; i < vertexAdjList.length; i++)
+            {
+                if(this.getColor(vertexAdjList[i]) == Color.Green)
+                {
+                    this.setColor(vertexAdjList[i], Color.Orange);
+                    this.setDistance(vertexAdjList[i], this.getDistance(vertex) + 1);
+                    this.setParent(vertexAdjList[i], vertex + 1);
+                    waitingQueue.add(vertexAdjList[i]);
+                }
+            }
+        
+            this.setColor(vertex, Color.Red);
+        }
+    }
+    
+    
     //~~~~~~ Debug:
     public void printState()
     {
         int order = this.graph.order();
         
-        System.out.print("Colors: ");
+        System.out.print("Colors    : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.color[i] + " ");
         System.out.println("\n");
         
         
-        System.out.print("Distances: ");
+        System.out.print("Distances : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.distance[i] + " ");
         System.out.println("\n");
         
         
-        System.out.print("Parents: ");
+        System.out.print("Parents   : ");
         for(int i = 0; i < order; i++)
             System.out.print(this.parent[i] + " ");
         System.out.println("\n");
