@@ -7,9 +7,7 @@ public class DFS
     //Ex2:
     private boolean isConnected;
     
-    private Color[] color;
-    private int[] distance;
-    private int[] parent;
+    private Vertice vertice;
     
     //Ex3:
     private int[] component;
@@ -19,9 +17,7 @@ public class DFS
         this.graph = graph;
         int order = graph.order();
         
-        color = new Color[order];
-        distance = new int[order];
-        parent = new int[order];
+        this.vertice = new Vertice(order);
         
         //Ex3:
         component = new int[order];
@@ -36,7 +32,7 @@ public class DFS
         
         for(int i = 0; i < order; i++)
         {
-            if(this.getColor(i) == Color.Green)
+            if(this.vertice.getColor(i) == Color.Green)
             {
                 //Ex2:
                 if(i > 0)
@@ -49,37 +45,17 @@ public class DFS
         this.isConnected = isConnected;
         this.printState();
     }
-    
-    public Color getColor(int vertex)
-    {
-        return this.color[vertex];
-    }
-    
+      
     //Ex3:
     public int getComponent(int vertex)
     {
         return this.component[vertex];
     }
     
-    public int getDistance(int vertex)
-    {
-        return this.distance[vertex];
-    }
-    
-    public int getParent(int vertex)
-    {
-        return this.parent[vertex];
-    }
-    
     public void initColors()
     {
         for(int i = 0; i < this.graph.order(); i++)
-            this.color[i] = Color.Green;
-    }
-    
-    public void setColor(int vertex, Color color)
-    {
-        this.color[vertex] = color;
+            this.vertice.setColor(i, Color.Green);
     }
     
     //Ex3:
@@ -87,17 +63,6 @@ public class DFS
     {
         this.component[vertex] = component;
     }
-    
-    public void setDistance(int vertex, int distance)
-    {
-        this.distance[vertex] = distance;
-    }
-    
-    public void setParent(int vertex, int parent)
-    {
-        this.parent[vertex] = parent;
-    }
-    
     
     public void vertexDFS(int v)
     {
@@ -107,9 +72,9 @@ public class DFS
         
         //On ajoute la racine dans la file et on initialise ses valeurs:
         waitingQueue.add(v);
-        this.setDistance(v, 0);
-        this.setColor(v, Color.Orange);
-        this.setParent(v, 0);
+        this.vertice.setDistance(v, 0);
+        this.vertice.setColor(v, Color.Orange);
+        this.vertice.setParent(v, 0);
         
         //Ex3:
         this.setComponent(v, v + 1);
@@ -126,11 +91,11 @@ public class DFS
         
             for(int i = 0; i < vertexAdjList.length; i++)
             {
-                if(this.getColor(vertexAdjList[i]) == Color.Green)
+                if(this.vertice.getColor(vertexAdjList[i]) == Color.Green)
                 {
-                    this.setColor(vertexAdjList[i], Color.Orange);
-                    this.setDistance(vertexAdjList[i], this.getDistance(vertex) + 1);
-                    this.setParent(vertexAdjList[i], vertex + 1);
+                    this.vertice.setColor(vertexAdjList[i], Color.Orange);
+                    this.vertice.setDistance(vertexAdjList[i], this.vertice.getDistance(vertex) + 1);
+                    this.vertice.setParent(vertexAdjList[i], vertex + 1);
                     
                     //Ex3:
                     this.setComponent(vertexAdjList[i], v + 1);
@@ -139,7 +104,7 @@ public class DFS
                 }
             }
         
-            this.setColor(vertex, Color.Red);
+            this.vertice.setColor(vertex, Color.Red);
         }
     }
     
@@ -152,21 +117,21 @@ public class DFS
         printVertices();
         System.out.print("Colors         : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.color[i] + " ");
+            System.out.print(this.vertice.getColor(i) + " ");
         System.out.println("\n");
         
         
         printVertices();
         System.out.print("Distances      : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.distance[i] + " ");
+            System.out.print(this.vertice.getDistance(i) + " ");
         System.out.println("\n");
         
         
         printVertices();
         System.out.print("Parents        : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.parent[i] + " ");
+            System.out.print(this.vertice.getParent(i) + " ");
         System.out.println("\n");
         
         
