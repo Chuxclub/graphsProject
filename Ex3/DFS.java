@@ -7,7 +7,7 @@ public class DFS
     //Ex2:
     private boolean isConnected;
     
-    private Vertice vertice;
+    private Vertices vertices;
     
     //Ex3:
     private int[] component;
@@ -17,7 +17,7 @@ public class DFS
         this.graph = graph;
         int order = graph.order();
         
-        this.vertice = new Vertice(order);
+        this.vertices = new Vertices(order);
         
         //Ex3:
         component = new int[order];
@@ -32,7 +32,7 @@ public class DFS
         
         for(int i = 0; i < order; i++)
         {
-            if(this.vertice.getColor(i) == Color.Green)
+            if(this.vertices.getColor(i) == Color.Green)
             {
                 //Ex2:
                 if(i > 0)
@@ -55,7 +55,7 @@ public class DFS
     public void initColors()
     {
         for(int i = 0; i < this.graph.order(); i++)
-            this.vertice.setColor(i, Color.Green);
+            this.vertices.setColor(i, Color.Green);
     }
     
     //Ex3:
@@ -72,9 +72,9 @@ public class DFS
         
         //On ajoute la racine dans la file et on initialise ses valeurs:
         waitingQueue.add(v);
-        this.vertice.setDistance(v, 0);
-        this.vertice.setColor(v, Color.Orange);
-        this.vertice.setParent(v, 0);
+        this.vertices.setDistance(v, 0);
+        this.vertices.setColor(v, Color.Orange);
+        this.vertices.setParent(v, 0);
         
         //Ex3:
         this.setComponent(v, v + 1);
@@ -91,11 +91,11 @@ public class DFS
         
             for(int i = 0; i < vertexAdjList.length; i++)
             {
-                if(this.vertice.getColor(vertexAdjList[i]) == Color.Green)
+                if(this.vertices.getColor(vertexAdjList[i]) == Color.Green)
                 {
-                    this.vertice.setColor(vertexAdjList[i], Color.Orange);
-                    this.vertice.setDistance(vertexAdjList[i], this.vertice.getDistance(vertex) + 1);
-                    this.vertice.setParent(vertexAdjList[i], vertex + 1);
+                    this.vertices.setColor(vertexAdjList[i], Color.Orange);
+                    this.vertices.setDistance(vertexAdjList[i], this.vertices.getDistance(vertex) + 1);
+                    this.vertices.setParent(vertexAdjList[i], vertex + 1);
                     
                     //Ex3:
                     this.setComponent(vertexAdjList[i], v + 1);
@@ -104,7 +104,7 @@ public class DFS
                 }
             }
         
-            this.vertice.setColor(vertex, Color.Red);
+            this.vertices.setColor(vertex, Color.Red);
         }
     }
     
@@ -117,21 +117,21 @@ public class DFS
         printVertices();
         System.out.print("Colors         : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.vertice.getColor(i) + " ");
+            System.out.print(this.vertices.getColor(i) + " ");
         System.out.println("\n");
         
         
         printVertices();
         System.out.print("Distances      : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.vertice.getDistance(i) + " ");
+            System.out.print(this.vertices.getDistance(i) + " ");
         System.out.println("\n");
         
         
         printVertices();
         System.out.print("Parents        : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.vertice.getParent(i) + " ");
+            System.out.print(this.vertices.getParent(i) + " ");
         System.out.println("\n");
         
         

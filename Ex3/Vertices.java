@@ -1,10 +1,10 @@
-public class Vertice {
+public class Vertices {
     
     private Color[] color;
     private int[] distance;
     private int[] parent;
     
-    public Vertice(int order)
+    public Vertices(int order)
     {
         color = new Color[order];
         distance = new int[order];
