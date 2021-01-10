@@ -3,49 +3,13 @@ import java.util.Scanner;
 public class GraphSimpleIO
 {
 	private static Scanner scanner;
-	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (a) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	
-	public static void initialize()
-	{
-	    scanner = new Scanner(System.in);
-	}
-	
-	public static Scanner getScanner()
-	{
-	    return scanner;
-	}
-	
-	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (b) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	
-	public static int[][] getMatrix(int matSize)
-	{
-		Scanner sc = getScanner();
-		int[][] mat = new int[matSize][matSize];
-
-		//On remplit:
-		for(int i = 0; i < matSize; i++)
-		{
-			for(int j = 0; j < matSize; j++)
-			{
-				mat[i][j] = sc.nextInt();
-			}
-		}
-		
-		return mat;
-	}
-	
-	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (c) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-		
-	public static int[][] getGraph(int[][] graph)
+        
+        // Afin d'interdire l'instanciation de cette classe:
+	private GraphSimpleIO(){} 
+        
+        // Retourne un graphe composé de sommets
+        // les sommets correspondent à ceux donnés en entrée System.in:
+        public static int[][] getGraph(int[][] graph)
 	{
             Scanner sc = getScanner();
             int graphSize = graph.length;
@@ -75,11 +39,41 @@ public class GraphSimpleIO
            
            return graph;
 	}
+        
+        public static int getInt()
+	{
+	    return scanner.nextInt();
+	}
 	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (d) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+        // Retourne une matrice de taille matSize par matSize
+        // elle est remplie avec les nombres données en entrée System.in:
+	public static int[][] getMatrix(int matSize)
+	{
+		Scanner sc = getScanner();
+		int[][] mat = new int[matSize][matSize];
+
+		// On remplit:
+		for(int i = 0; i < matSize; i++)
+		{
+			for(int j = 0; j < matSize; j++)
+			{
+				mat[i][j] = sc.nextInt();
+			}
+		}
+		
+		return mat;
+	}
 	
+	public static Scanner getScanner()
+	{
+	    return scanner;
+	}
+        
+	public static void initialize()
+	{
+	    scanner = new Scanner(System.in);
+	}
+        
 	public static void printMatrix(int[][] mat)
 	{
 	    for(int i = 0; i < mat.length; i++)
@@ -93,9 +87,6 @@ public class GraphSimpleIO
             }
 	}
 	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (e) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 	
 	public static void printGraph(int[][] graph)
 	{
@@ -111,29 +102,10 @@ public class GraphSimpleIO
                 System.out.println("0");
             }
 	}
-	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (f) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	
+
 	public static void rawPrintGraph(int[][] graph)
 	{
 	    printGraph(graph);
 	}
 	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (g) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	
-	public static int getInt()
-	{
-	    return scanner.nextInt();
-	}
-	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~ (h) ~~~~~~~~~~~~~~~~~~~~~ //
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	
-	// Afin d'interdire l'instanciation de cette classe:
-	private GraphSimpleIO(){} 
 }

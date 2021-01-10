@@ -3,10 +3,10 @@ import java.util.*;
 public class DFS
 {
     private GraphSimple graph;
+    private Vertices vertices;
     
     //Ex2:
     private boolean isConnected;
-    private Vertices vertices;
     
     //Ex3:
     private int[] component;
