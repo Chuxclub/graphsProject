@@ -82,7 +82,6 @@ public class GraphSimple
     public void fromMatrix(int[][] adjMat)
     {
         int order = order();
-        adjMat = new int[order][];
 	int[] buffer = new int[order];
 	int cursor = 0;
 		
@@ -92,15 +91,15 @@ public class GraphSimple
 	{
 		for(int j = 0; j < order; j++)
 		{
-			if(this.matrix[i][j] == 1)
+			if(adjMat[i][j] == 1)
 			{
-				buffer[cursor] = j+1;
+				buffer[cursor] = j;
 				cursor++;
 			}
 		}
 			
-		adjMat[i] = new int[cursor];
-		System.arraycopy(buffer, 0, adjMat[i], 0, cursor);
+		this.graph[i] = new int[cursor];
+		System.arraycopy(buffer, 0, this.graph[i], 0, cursor);
 		cursor = 0;
 	}
     }
@@ -110,6 +109,4 @@ public class GraphSimple
     {
         return this.matrix;
     }
-	
-    // cf. GraphIT
 }
