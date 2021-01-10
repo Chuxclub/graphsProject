@@ -10,33 +10,49 @@ public class GraphSimple
     {
         this.graph = new int[ordre][];
     }
-	 
-    public void setAdjacencyList(int vertex, int[] adjList)
+	
+    public int degree(int vertex)
     {
-        this.graph[vertex] = adjList;
+        return this.graph[vertex].length;
+    }
+    
+    //lecture depuis une matrice
+    public void fromMatrix(int[][] adjMat)
+    {
+        int order = order();
+        adjMat = new int[order][];
+	int[] buffer = new int[order];
+	int cursor = 0;
+		
+	//On lit la matrice et on ajoute la colonne quand la
+	//cellule vaut 1:
+	for(int i = 0; i < order; i++)
+	{
+		for(int j = 0; j < order; j++)
+		{
+			if(this.matrix[i][j] == 1)
+			{
+				buffer[cursor] = j+1;
+				cursor++;
+			}
+		}
+			
+		adjMat[i] = new int[cursor];
+		System.arraycopy(buffer, 0, adjMat[i], 0, cursor);
+		cursor = 0;
+	}
     }
     
     public int[] getAdjacencyList(int vertex)
     {
         return this.graph[vertex];
     }
+    
+    public int[][] getMatrix()
+    {
+        return this.matrix;
+    }
 	
-    
-    public int order()
-    {
-        return this.graph.length;
-    }
-    
-    public int degree(int vertex)
-    {
-        return this.graph[vertex].length;
-    }
-    
-    public boolean isVertex(int n)
-    {
-        return n >= 1 && n <= this.order();
-    }
-    
     public boolean isEdge(int vX, int vY)
     {
         boolean found = false;
@@ -53,7 +69,22 @@ public class GraphSimple
         return found;
     }
 
+    public boolean isVertex(int n)
+    {
+        return n >= 1 && n <= this.order();
+    }
     
+    public int order()
+    {
+        return this.graph.length;
+    }
+    
+    public void setAdjacencyList(int vertex, int[] adjList)
+    {
+        this.graph[vertex] = adjList;
+    }
+    
+    //transforme en matrice
     public void toMatrix()
     {
         this.matrix = new int[this.order()][this.order()];
@@ -78,6 +109,7 @@ public class GraphSimple
 	
 	this.isMatrix = true;
     }
+
     
     public void fromMatrix(int[][] adjMat)
     {
