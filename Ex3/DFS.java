@@ -24,6 +24,7 @@ public class DFS
         initColors();
     }
     
+    //preparation pour lancer le parcours en largeur
     public void execDFS()
     {
         int order = this.graph.order();
@@ -66,6 +67,7 @@ public class DFS
         this.component[vertex] = component;
     }
     
+    //parcours en largeur du graphe à partir d'un sommet v
     public void vertexDFS(int v)
     {
         //On crée une file d'attente locale à l'algorithme:
@@ -85,14 +87,18 @@ public class DFS
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
         //~~~~~~~~~~ Itération ~~~~~~~~~//
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-        
+        //la liste d'attente n'est pas vide
         while(!(waitingQueue.isEmpty()))
         {
+            //retire le premier sommet
             int vertex = waitingQueue.remove();
+            //liste d'adjacence pour vertex
             int[] vertexAdjList = this.graph.getAdjacencyList(vertex);
         
+            //pour tout sommet adjacent à vertex
             for(int i = 0; i < vertexAdjList.length; i++)
             {
+                //premier passage sur un sommet
                 if(this.vertices.getColor(vertexAdjList[i]) == Color.Green)
                 {
                     this.vertices.setColor(vertexAdjList[i], Color.Orange);
@@ -106,6 +112,7 @@ public class DFS
                 }
             }
         
+            //sommet parcouru
             this.vertices.setColor(vertex, Color.Red);
         }
     }

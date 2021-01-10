@@ -10,75 +10,13 @@ public class GraphSimple
     {
         this.graph = new int[ordre][];
     }
-	 
-    public void setAdjacencyList(int vertex, int[] adjList)
-    {
-        this.graph[vertex] = adjList;
-    }
-    
-    public int[] getAdjacencyList(int vertex)
-    {
-        return this.graph[vertex];
-    }
 	
-    
-    public int order()
-    {
-        return this.graph.length;
-    }
-    
     public int degree(int vertex)
     {
         return this.graph[vertex].length;
     }
     
-    public boolean isVertex(int n)
-    {
-        return n >= 1 && n <= this.order();
-    }
-    
-    public boolean isEdge(int vX, int vY)
-    {
-        boolean found = false;
-        
-        for(int i = 0; i < this.graph[vX].length; i++)
-        {
-            if(this.graph[vX][i] == vY)
-            {
-                found = true;
-                break;
-            }
-        }
-        
-        return found;
-    }
-
-    
-    public void toMatrix()
-    {
-        this.matrix = new int[this.order()][this.order()];
-
-	//On remplit de 0:
-	for(int i = 0; i < this.order(); i++)
-	{
-		for(int j = 0; j < this.order(); j++)
-		{
-			this.matrix[i][j] = 0;
-		}
-	}
-
-	//On modifie selon graph:
-	for(int i = 0; i < this.order(); i++)
-	{
-		for(int j = 0; j < this.graph[i].length; j++)
-		{
-			this.matrix[i][this.graph[i][j]] = 1;
-		}
-	}
-	
-	this.isMatrix = true;
-    }
-    
+    //lecture depuis une matrice
     public void fromMatrix(int[][] adjMat)
     {
         int order = order();
@@ -104,12 +42,73 @@ public class GraphSimple
 		cursor = 0;
 	}
     }
-	
+    
+    public int[] getAdjacencyList(int vertex)
+    {
+        return this.graph[vertex];
+    }
     
     public int[][] getMatrix()
     {
         return this.matrix;
     }
 	
+    public boolean isEdge(int vX, int vY)
+    {
+        boolean found = false;
+        
+        for(int i = 0; i < this.graph[vX].length; i++)
+        {
+            if(this.graph[vX][i] == vY)
+            {
+                found = true;
+                break;
+            }
+        }
+        
+        return found;
+    }
+
+    public boolean isVertex(int n)
+    {
+        return n >= 1 && n <= this.order();
+    }
+    
+    public int order()
+    {
+        return this.graph.length;
+    }
+    
+    public void setAdjacencyList(int vertex, int[] adjList)
+    {
+        this.graph[vertex] = adjList;
+    }
+    
+    //transforme en matrice
+    public void toMatrix()
+    {
+        this.matrix = new int[this.order()][this.order()];
+
+	//On remplit de 0:
+	for(int i = 0; i < this.order(); i++)
+	{
+		for(int j = 0; j < this.order(); j++)
+		{
+			this.matrix[i][j] = 0;
+		}
+	}
+
+	//On modifie selon graph:
+	for(int i = 0; i < this.order(); i++)
+	{
+		for(int j = 0; j < this.graph[i].length; j++)
+		{
+			this.matrix[i][this.graph[i][j]] = 1;
+		}
+	}
+	
+	this.isMatrix = true;
+    }
+ 	
     // cf. GraphIT
 }
