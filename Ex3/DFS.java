@@ -6,7 +6,6 @@ public class DFS
     
     //Ex2:
     private boolean isConnected;
-    
     private Vertices vertices;
     
     //Ex3:

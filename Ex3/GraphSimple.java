@@ -2,22 +2,15 @@ import java.util.Scanner;
 
 public class GraphSimple
 {
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~ (a) ~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-	
     private int[][] graph;
+    private int[][] matrix;
+    private boolean isMatrix = false;
 
     public GraphSimple(int ordre)
     {
         this.graph = new int[ordre][];
     }
-	
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~ (b) ~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-    
+	 
     public void setAdjacencyList(int vertex, int[] adjList)
     {
         this.graph[vertex] = adjList;
@@ -28,9 +21,6 @@ public class GraphSimple
         return this.graph[vertex];
     }
 	
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~ (c) ~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
     
     public int order()
     {
@@ -63,12 +53,6 @@ public class GraphSimple
         return found;
     }
 
-	
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~ (d) ~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-    private int[][] matrix;
-    private boolean isMatrix = false;
     
     public void toMatrix()
     {
@@ -121,10 +105,6 @@ public class GraphSimple
 	}
     }
 	
-	
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~ (e) ~~~~~~~~~~~~~~~~~~~~~ //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
     
     public int[][] getMatrix()
     {
