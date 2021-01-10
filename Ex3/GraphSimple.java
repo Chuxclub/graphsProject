@@ -16,29 +16,29 @@ public class GraphSimple
         return this.graph[vertex].length;
     }
     
-    //lecture depuis une matrice
+    // Initialisation du tableau de listes d'adjacence du graphe
+    // par lecture d'une matrice d'adjacence:
     public void fromMatrix(int[][] adjMat)
     {
         int order = order();
-        adjMat = new int[order][];
 	int[] buffer = new int[order];
 	int cursor = 0;
 		
-	//On lit la matrice et on ajoute la colonne quand la
-	//cellule vaut 1:
+	// On lit la matrice et on ajoute la colonne quand la
+	// cellule vaut 1:
 	for(int i = 0; i < order; i++)
 	{
 		for(int j = 0; j < order; j++)
 		{
-			if(this.matrix[i][j] == 1)
+			if(adjMat[i][j] == 1)
 			{
-				buffer[cursor] = j+1;
+				buffer[cursor] = j;
 				cursor++;
 			}
 		}
 			
-		adjMat[i] = new int[cursor];
-		System.arraycopy(buffer, 0, adjMat[i], 0, cursor);
+		this.graph[i] = new int[cursor];
+		System.arraycopy(buffer, 0, this.graph[i], 0, cursor);
 		cursor = 0;
 	}
     }
@@ -84,12 +84,13 @@ public class GraphSimple
         this.graph[vertex] = adjList;
     }
     
-    //transforme en matrice
+    // Initialise la matrice d'adjacence du graphe
+    // en utilisant son tableau de listes d'adjacence :
     public void toMatrix()
     {
         this.matrix = new int[this.order()][this.order()];
 
-	//On remplit de 0:
+	// On remplit de 0:
 	for(int i = 0; i < this.order(); i++)
 	{
 		for(int j = 0; j < this.order(); j++)
@@ -98,7 +99,7 @@ public class GraphSimple
 		}
 	}
 
-	//On modifie selon graph:
+	// On modifie selon graph:
 	for(int i = 0; i < this.order(); i++)
 	{
 		for(int j = 0; j < this.graph[i].length; j++)
@@ -108,37 +109,5 @@ public class GraphSimple
 	}
 	
 	this.isMatrix = true;
-    }
-
-    
-    public void fromMatrix(int[][] adjMat)
-    {
-        int order = order();
-	int[] buffer = new int[order];
-	int cursor = 0;
-		
-	//On lit la matrice et on ajoute la colonne quand la
-	//cellule vaut 1:
-	for(int i = 0; i < order; i++)
-	{
-		for(int j = 0; j < order; j++)
-		{
-			if(adjMat[i][j] == 1)
-			{
-				buffer[cursor] = j;
-				cursor++;
-			}
-		}
-			
-		this.graph[i] = new int[cursor];
-		System.arraycopy(buffer, 0, this.graph[i], 0, cursor);
-		cursor = 0;
-	}
-    }
-	
-    
-    public int[][] getMatrix()
-    {
-        return this.matrix;
     }
 }

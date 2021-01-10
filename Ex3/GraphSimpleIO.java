@@ -7,8 +7,8 @@ public class GraphSimpleIO
         // Afin d'interdire l'instanciation de cette classe:
 	private GraphSimpleIO(){} 
         
-        //retourne un graphe composé de sommets
-        //les sommets correspondent à ceux donnés en entrée System.in:
+        // Retourne un graphe composé de sommets
+        // les sommets correspondent à ceux donnés en entrée System.in:
         public static int[][] getGraph(int[][] graph)
 	{
             Scanner sc = getScanner();
@@ -45,14 +45,14 @@ public class GraphSimpleIO
 	    return scanner.nextInt();
 	}
 	
-        //retourne une matrice de taille matSize par matSize
-        //elle est remplie avec les nombres données en entrée System.in:
+        // Retourne une matrice de taille matSize par matSize
+        // elle est remplie avec les nombres données en entrée System.in:
 	public static int[][] getMatrix(int matSize)
 	{
 		Scanner sc = getScanner();
 		int[][] mat = new int[matSize][matSize];
 
-		//On remplit:
+		// On remplit:
 		for(int i = 0; i < matSize; i++)
 		{
 			for(int j = 0; j < matSize; j++)

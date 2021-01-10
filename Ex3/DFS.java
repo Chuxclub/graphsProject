@@ -75,11 +75,11 @@ public class DFS
     // du graphe dans laquelle se trouve le sommet passé en paramètre v:
     public void vertexDFS(int v)
     {
-        //On crée une file d'attente locale à l'algorithme:
+        // On crée une file d'attente locale à l'algorithme:
         int order = this.graph.order();
         LinkedList<Integer> waitingQueue = new LinkedList<>();
         
-        //On ajoute la racine dans la file et on initialise ses valeurs:
+        // On ajoute la racine dans la file et on initialise ses valeurs:
         waitingQueue.add(v);
         this.vertices.setDistance(v, 0);
         this.vertices.setColor(v, Color.Orange);
@@ -89,21 +89,22 @@ public class DFS
         this.setComponent(v, v + 1);
         
         
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-        //~~~~~~~~~~ Itération ~~~~~~~~~//
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-        //la liste d'attente n'est pas vide
+        // ============== Itération ==============
+        
+        // Tant que la file d'attente n'est pas vide:
         while(!(waitingQueue.isEmpty()))
         {
-            //retire le premier sommet
+            // On retire le sommet en tête:
             int vertex = waitingQueue.remove();
-            //liste d'adjacence pour vertex
+            
+            // On récupère la liste d'adjacence du sommet retiré:
             int[] vertexAdjList = this.graph.getAdjacencyList(vertex);
         
-            //pour tout sommet adjacent à vertex
+            // On parcourt cette liste de voisins:
             for(int i = 0; i < vertexAdjList.length; i++)
             {
-                //premier passage sur un sommet
+                // Si le voisin n'a pas encore été exploré on affecte les valeurs
+                // correspondantes en conséquence:
                 if(this.vertices.getColor(vertexAdjList[i]) == Color.Green)
                 {
                     this.vertices.setColor(vertexAdjList[i], Color.Orange);
@@ -117,13 +118,20 @@ public class DFS
                 }
             }
         
-            //sommet parcouru
+            // Le sommet en tête que nous avions retiré de la file d'attente
+            // est maintenant complètement exploré:
             this.vertices.setColor(vertex, Color.Red);
         }
+        
+        // ============ Fin Itération =============
     }
     
     
-    //~~~~~~ Debug:
+    
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //~~~~~~~~~~ Debugging ~~~~~~~~~//
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+        
     public void printState()
     {
         int order = this.graph.order();
@@ -138,14 +146,14 @@ public class DFS
         printVertices();
         System.out.print("Distances      : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.vertices.getDistance(i) + " ");
+            System.out.printf("%3d ", this.vertices.getDistance(i));
         System.out.println("\n");
         
         
         printVertices();
         System.out.print("Parents        : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.vertices.getParent(i) + " ");
+            System.out.printf("%3d ", this.vertices.getParent(i));
         System.out.println("\n");
         
         
@@ -158,7 +166,7 @@ public class DFS
         printVertices();
         System.out.print("Components     : ");
         for(int i = 0; i < order; i++)
-            System.out.print(this.component[i] + " ");
+            System.out.printf("%3d ", this.component[i]);
         System.out.println("\n");
     }
     
@@ -168,7 +176,7 @@ public class DFS
         
         System.out.print("Vertices       : ");
         for(int i = 0; i < order; i++)
-            System.out.print(i+1 + " ");
+            System.out.printf("%3d ", i+1);
         System.out.println();
     }
 }
