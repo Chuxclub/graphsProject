@@ -1,0 +1,18 @@
+====================================== Pour compiler =============================================
+
+javac *.java (dans le dossier du projet qu'on souhaite compiler, sinon: chemin/vers/projet/*.java)
+
+==================================================================================================
+
+
+
+====================================== Pour exécuter =============================================
+
+- En utilisant un tableau de listes d'adjacences:
+java Main < ../graphes/graph-000.alists (par exemple)
+
+- En utilisant une matrice d'adjacence:
+java Main -m < ../graphes/graph-000.amatrix (par exemple. On note l'option "-m", cf. implanté dans 
+                                             Main.java)
+
+==================================================================================================
