@@ -46,7 +46,10 @@ public class DFS
             }
         }
         
+        //Ex2:
         this.isConnected = isConnected;
+        
+        //Debug:
         this.printState();
     }
     
